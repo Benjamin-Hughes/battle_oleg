@@ -25,4 +25,8 @@ class Game
       player_1.reduce_points
     end
   end
+
+  def notify
+    @player_1_turn ? "#{player_1.name} attacked #{player_2.name}!!!" : "#{player_2.name} attacked #{player_1.name}!!!"
+  end
 end
