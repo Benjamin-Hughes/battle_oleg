@@ -16,6 +16,10 @@ class Game
     @players.last
   end
 
+  def loser
+    @players.select { |player| player.points <= 0 }.last
+  end
+
   def attack
     if @player_1_turn == true
       @player_1_turn = false
