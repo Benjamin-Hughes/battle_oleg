@@ -30,8 +30,19 @@ enable :sessions
     @player_2 = $game.player_2.name
     @commentator = $game.notify
     $game.attack
+    redirect '/gameover' if $game.player_1.points <= 0 || $game.player_2.points <= 0
+
     # erb(:attack)
     erb(:play)
+  end
+
+  get '/gameover' do
+    if $game.player_1.points <= 0
+      @loser = $game.player_1
+    else
+      @loser = $game.player_2
+    end
+    erb :gameover
   end
 
   run! if app_file == $0
