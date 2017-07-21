@@ -13,27 +13,27 @@ enable :sessions
   end
 
   post '/names' do
-    $game = Game.new(Player.new(params[:player_1]), Player.new(params[:player_2]))
+    Game.start(Player.new(params[:player_1]), Player.new(params[:player_2]))
     p params
     redirect '/play'
   end
 
   get '/play' do
-    redirect '/gameover' if $game.loser
-    @player_1 = $game.player_1.name
-    @player_2 = $game.player_2.name
-    puts "Notifier = #{$game.notify}"
-    @commentator = $game.notify
+    redirect '/gameover' if Game.game.loser
+    @player_1 = Game.game.player_1
+    @player_2 = Game.game.player_2
+    #{puts "Notifier = #{Game.game.notify}"}
+    @commentator = Game.game.notify
     erb(:play)
   end
 
   get '/attack' do
-    $game.attack
+    Game.game.attack
     redirect '/play'
   end
 
   get '/gameover' do
-    @loser = $game.loser
+    @loser = Game.game.loser
     erb :gameover
   end
 

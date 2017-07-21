@@ -3,6 +3,13 @@ require_relative 'player'
 class Game
   attr_accessor :player_1_turn
 
+  def self.start(player_1, player_2)
+    @@game = Game.new(player_1, player_2)
+  end
+  def self.game
+    @@game
+  end
+
   def initialize(player_1, player_2)
     @players = [player_1, player_2]
     @player_1_turn = true
