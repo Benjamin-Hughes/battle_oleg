@@ -15,7 +15,8 @@ describe 'Player' do
 
   describe "#reduce_points" do
     it "reduces player's points" do
-      expect{bob.reduce_points}.to change {bob.points}.by(-10)
+       srand(4)
+      expect{bob.reduce_points}.to change {bob.points}.by(-11)
     end
   end
 end

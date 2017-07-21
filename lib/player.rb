@@ -9,7 +9,9 @@ class Player
   end
 
   def reduce_points
-    self.points -= 10
+    damage = rand(1..15)
+    p damage
+    self.points -= damage
   end
 
   def default_points
