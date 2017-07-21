@@ -19,19 +19,17 @@ enable :sessions
   end
 
   get '/play' do
+    redirect '/gameover' if $game.loser
     @player_1 = $game.player_1.name
     @player_2 = $game.player_2.name
-    @commentator = ""
+    puts "Notifier = #{$game.notify}"
+    @commentator = $game.notify
     erb(:play)
   end
 
   get '/attack' do
-    @player_1 = $game.player_1.name
-    @player_2 = $game.player_2.name
-    @commentator = $game.notify
     $game.attack
-    redirect '/gameover' if $game.loser
-    erb(:play)
+    redirect '/play'
   end
 
   get '/gameover' do

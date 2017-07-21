@@ -11,4 +11,8 @@ class Player
   def reduce_points
     self.points -= 10
   end
+
+  def default_points
+    DEFAULT_POINTS
+  end
 end

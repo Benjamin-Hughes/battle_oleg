@@ -31,6 +31,15 @@ class Game
   end
 
   def notify
-    @player_1_turn ? "#{player_1.name} attacked #{player_2.name}!!!" : "#{player_2.name} attacked #{player_1.name}!!!"
+    if game_started?
+      @player_1_turn ? "#{player_2.name} attacked #{player_1.name}!!!"
+      : "#{player_1.name} attacked #{player_2.name}!!!"
+    end
+  end
+
+  private
+
+  def game_started?
+    player_1.points < player_1.default_points || player_2.points < player_2.default_points
   end
 end
